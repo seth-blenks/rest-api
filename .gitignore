@@ -1,0 +1,8 @@
+__pycache__
+public/static/images/*
+!public/static/images/.gitkeep
+me.env
+credentials.json
+
+
+
