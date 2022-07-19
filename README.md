@@ -14,14 +14,16 @@ After registration, your public and private keys will be made available on your 
 
 To receive all the contents of the database you run the following get request with your public key as a parameter passed to the key variable.
 
-`import requests
-requests.get(‘https://www.vandies.com/api/v1/employee’,params={‘key’: public_key})
-`
+```python
+import requests
+requests.get('https://www.vandies.com/api/v1/employee',params={'key': public_key})
+```
 
-response `[{‘username’: ‘<name>’,’email’:’<email>’}, …]`
+response `[{'username': '<name>','email':'<email>'}, …]`
 
 To update the users information you send a post request with your public and private key
+```python
+requests.post('api.seth-seth.xyz/api/v1/employee')
+```
 
-requests.post(‘api.seth-seth.xyz/api/v1/employee’)
-
-Link: api.seth-seth.xyz
+Link: (website) https://api.seth-seth.xyz
