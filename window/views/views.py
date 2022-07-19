@@ -1,5 +1,5 @@
 from . import window
-from flask import render_template, request
+from flask import render_template, request, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from flask import jsonify
 from ..utils import gen_api_keys

@@ -4,7 +4,6 @@ from flask import jsonify, g
 from ..utils import get_api_user
 
 
-
 @client.route('/v1/employees', methods = ['POST','GET'])
 @get_api_user
 def employees():

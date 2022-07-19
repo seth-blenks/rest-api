@@ -10,9 +10,7 @@ window_server = window('development')
 @window_server.cli.command('setup')
 def setup():
 	Role.setup()
-	admin_user = User(username= current_app.config['ADMINISTRATOR_USERNAME'], email = current_app.config['ADMIN_EMAIL'])
-	sql.session.add(admin_user)
-	sql.session.commit()
+
 
 
 def run_app(environ, start_response):
