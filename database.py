@@ -34,6 +34,7 @@ class PERMISSION:
 
 class Role(sql.Model):
 	__tablename__ = 'role'
+	__table_args__ = {"schema":"api"}
 	id = sql.Column(sql.Integer, primary_key = True, autoincrement = True)
 	name = sql.Column(sql.String(32), unique  = True)
 	permission = sql.Column(sql.Integer)
@@ -65,6 +66,7 @@ class Role(sql.Model):
 
 class User(sql.Model, UserMixin):
 	__tablename__ = 'webuser'
+	__table_args__ = {"schema":"api"}
 	id = sql.Column(sql.Integer, primary_key = True, autoincrement = True)
 	username = sql.Column(sql.String(112))
 	email = sql.Column(sql.String(112), unique = True)
@@ -169,6 +171,7 @@ class Visitor(AnonymousUserMixin):
 
 class Employees(sql.Model):
 	__tablename__ = 'employee'
+	__table_args__ = {"schema":"api"}
 	id = sql.Column(sql.Integer, primary_key = True, autoincrement = True)
 	employee_id = sql.Column(sql.Integer, unique = True)
 	first_name = sql.Column(sql.String(225))
