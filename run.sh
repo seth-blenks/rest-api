@@ -1,1 +1,1 @@
-gunicorn -c gunicorn_config.py wsgi:run_app --reload &
+gunicorn  wsgi:run_app --reload &

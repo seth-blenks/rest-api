@@ -4,8 +4,8 @@ from database import sql, User, Role
 import os
 from flask import current_app
 
-api_server = api('development')
-window_server = window('development')
+api_server = api('production')
+window_server = window('production')
 
 @window_server.cli.command('setup')
 def setup():
