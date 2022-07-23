@@ -75,7 +75,7 @@ class User(sql.Model, UserMixin):
 	public_key = sql.Column(sql.String(250), unique = True)
 	private_key = sql.Column(sql.String(250), unique = True)
 	_password = sql.Column(sql.String(225))
-	role_id = sql.Column(sql.Integer, sql.ForeignKey('role.id'))
+	role_id = sql.Column(sql.Integer, sql.ForeignKey('api.role.id'))
 	role = sql.relationship('Role')
 
 	def __init__(self, *args, **kwargs):

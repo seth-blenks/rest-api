@@ -15,7 +15,7 @@ class Development(Basic):
 
 
 class Testing(Basic):
-    SQLALCHEMY_DATABASE_URI = 'postgresql://privateuser:private@localhost:5432/testsecury'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://privateuser:private@localhost:5432/api'
     PERSONALTESTING = True
     WTF_CSRF_ENABLED = False
     SERVER_NAME = 'www.testserver.com'

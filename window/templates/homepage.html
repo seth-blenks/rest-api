@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{url_for('window.static', filename='css/bootstrap.min.css')}}" rel="stylesheet" />
+        <link href="{{url_for('window.static', filename='css/prism.css')}}" rel="stylesheet" />
 
     </head>
     <body id="page-top">
@@ -60,23 +61,23 @@
                 <h2>Basic API Query</h2>
                 <p>
                      To receive all the contents of the database you run the following get request with your public key as a parameter passed to the key variable.
-                     <pre>
-                     <code>
-                        import requests
-                        requests.get(‘https://www.vandies.com/api/v1/employee’,params={‘key’: public_key})
-                     </code>
-                    </pre>
+<pre>
+<code class='language-python'>
+import requests
+requests.get(‘https://www.vandies.com/api/v1/employee’,params={‘key’: public_key})
+</code>
+</pre>
 
                     <h3> Response </h3>
-                    <code>[{‘username’: ‘name’,’email’:’email’}, ...]</code>
+                    <pre><code class='language-python'>[{‘username’: ‘name’,’email’:’email’}, ...]</code></pre>
                 </p>
 
                 <p>
                     To update the users information you send a post request with your public and private key
 
-                    <code>
-                    requests.post(‘api.seth-seth.xyz/api/v1/employee’)
-                    </code>
+<pre><code class='language-python'>
+requests.post(‘api.seth-seth.xyz/api/v1/employee’)
+</code></pre>
                 </p> 
             </div>
         </section>
@@ -100,9 +101,9 @@
                     <div class="tab-pane fade show active" id="home-justified" role="tabpanel" aria-labelledby="home-tab">
                       <div class="row gx-4 gx-lg-5 justify-content-center">
                             <div class="text-center">
-                                <p class="text-muted mb-5">Provide your login details to view your api keys</p>
+                                <p class="text-muted mb-2">Provide your login details to view your api keys</p>
                             </div>
-                            <div class="alert alert-primary alert-dismissible fade alert-login" role="alert"></div>
+                            <div class='alert-login'></div>
                         </div>
                         <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                             <div>
@@ -131,9 +132,9 @@
                     <div class="tab-pane fade" id="profile-justified" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="row gx-4 gx-lg-5 justify-content-center">
                             <div class="text-center">
-                                <p class="text-muted mb-5">Register to Generate API Keys</p>
+                                <p class="text-muted mb-2">Register to Generate API Keys</p>
                             </div>
-                            <div class="alert alert-register alert-primary alert-dismissible fade" role="alert"></div>
+                            <div class="alert-register"></div>
                         </div>
                         <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                             <div class="">
@@ -183,6 +184,7 @@
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script> -->
         <!-- Core theme JS-->
         <script src="{{url_for('window.static', filename ='js/scripts.js')}}"></script>
+        <script src="{{url_for('window.static', filename='js/prism.js')}}"></script>
         <script>
             let submitButton = document.querySelector('#submitButton')
             submitButton.addEventListener('click', function(){
@@ -206,9 +208,11 @@
                         'body': formdata
                     }).then( response => response.json()).then( data => {
                         let message = document.querySelector('.alert-register')
-                        message.innerHTML = `${data}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`
-                        message.classList.add('show')
+                        message.innerHTML = `
+                            <div class="alert alert-primary alert-dismissible show fade" role="alert">
+                            ${data}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
                     })
                 }
             })
@@ -231,12 +235,16 @@
                             'X-CSRFToken': '{{csrf_token()}}'
                         },
                         'body': formdata
-                    }).then( response => response.json()).then( data => {
+                    }).then( response => {
+                        response.json().then( data => {
                         let message = document.querySelector('.alert-login')
-                        message.innerHTML = `${data}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`
-                        message.classList.add('show')
-                        window.location.reload();
+                        message.innerHTML = `<div class="alert alert-primary alert-dismissible show fade" role="alert">
+                            ${data}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
+                        if(response.status_code == 200)  window.location.reload();
+                    })
+
                     })
                 }
             })
